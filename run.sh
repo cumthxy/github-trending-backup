@@ -5,5 +5,5 @@ echo $date_time
 
 git add .
 git commit -m "docs: update Github trending in $date_time"
-git push origin master
+git push
 
