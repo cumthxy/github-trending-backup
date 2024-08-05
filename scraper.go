@@ -23,7 +23,7 @@ type Alert struct {
 	Title, Content, URL, Priority, Source, Receiver string
 }
 
-//SendAlert to send notification
+// SendAlert to send notification
 func (a *Alert) SendAlert() {
 	defer func() {
 		if r := recover(); r != nil {
@@ -55,7 +55,7 @@ func main() {
 	// for {
 	tempDate = time.Now().Format("2006-01-02")
 	message := ""
-	if time.Now().Day() == 10 {
+	if time.Now().Day() == 2 {
 		if ok, err := collectDocs(); ok {
 			message += "Collect the *.md files: OK!\n"
 		} else {
@@ -129,7 +129,7 @@ func main() {
 	// }
 }
 
-//collectDocs
+// collectDocs
 func collectDocs() (ok bool, err error) {
 	today := time.Now()
 	lastMonth := today.AddDate(0, -1, 0)
@@ -162,7 +162,7 @@ func collectDocs() (ok bool, err error) {
 	return true, nil
 }
 
-//listDir
+// listDir
 func listDir(dirPth string, suffix string) (files []string, err error) {
 	files = make([]string, 0, 10)
 	dir, err := ioutil.ReadDir(dirPth)
@@ -181,7 +181,7 @@ func listDir(dirPth string, suffix string) (files []string, err error) {
 	return files, nil
 }
 
-//interface to string
+// interface to string
 func interface2string(inter interface{}) string {
 	var tempStr string
 	switch inter.(type) {
@@ -233,7 +233,7 @@ func scrape(jobs chan string, backs chan<- string) {
 		var e error
 		result := "\n#### " + language + "\n"
 
-		if doc, e = goquery.NewDocument("https://github.com/trending?l="+language); e != nil {
+		if doc, e = goquery.NewDocument("https://github.com/trending?l=" + language); e != nil {
 			println("Error:", e.Error())
 			panic(language)
 		}
